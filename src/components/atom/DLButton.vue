@@ -1,17 +1,24 @@
 <template>
-  <button :disabled="disabled" type="button" :class="classes">
+  <button
+    :disabled="disabled"
+    type="button"
+    :class="classes"
+    @click="onClick"
+    >
     {{ label }}
     <span :class="iconClasses">
-      <img :src="require(`@/assets/${icon}`)" />
+      <img :src="require(`../../assets/${icon}`)" />
     </span>
   </button>
 </template>
 
 <script>
+// import '../../assets'
 export default {
   props: {
     icon: {
-      type: String
+      type: String,
+      default: 'logo.png'
     },
     iconPosition: {
       type: String,
@@ -48,6 +55,11 @@ export default {
         // [`img-float--$(this.iconPosition}`]: true,
         [`img-float--${this.iconPosition}`]: true
       }
+    }
+  },
+  methods: {
+    onClick () {
+      this.$emit('onClick')
     }
   }
 }
